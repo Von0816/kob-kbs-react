@@ -1,0 +1,74 @@
+#create-entity-form {
+  background-color: var(--tertiary-color);
+  width: 50%;
+  padding: 2em;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  z-index: 1;
+}
+
+.form-item {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: .25em
+}
+
+.form-input {
+  border-width: 0 0 2px 0;
+  border-color: var(--light-grey);
+  background-color: transparent;
+  font-size: 1.5em;
+  font-weight: 500;
+  width: 100%;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.form-item.valid .input-error-msg {
+  height: 0;
+  visibility: hidden;
+}
+
+.input-error-msg {
+  margin-top: .25em;
+  font-size: .85em;
+  visibility: visible;
+  color: var(--error-color);
+}
+
+#date-input {
+  display: flex;
+  flex-flow: column;
+  gap: .25em;
+}
+
+#form-submit-btn {
+  color: var(--pure-white);
+  cursor: pointer;
+  align-self: center;
+  background-color: var(--secondary-color);
+  border: none;
+  border-radius: 1em;
+  font-size: 1.2em;
+  font-weight: 500;
+  height: 1.5em;
+  width: 100%;
+}
+
+#form-submit-btn:hover {
+  box-shadow: 2px 2px var(--light-grey);
+}
+
+.input-label {
+  color: #000000;
+  font-size: 1em;
+  font-weight: 400;
+}
+
+
