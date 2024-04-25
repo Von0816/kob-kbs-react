@@ -1,11 +1,13 @@
 :root {
-  --primary-color: #B80000;
-  --secondary-color: #FF9800;
-  --tertiary-color: #F3EEEA;
-  --error-color: #CD1818;
+  --primary-colour: #B80000;
+  --secondary-colour: #FF9800;
+  --tertiary-colour: #F3EEEA;
+  --error-primary: #CD1818;
   --light-grey: #DDDDDD;
   --pure-black: #000;
   --pure-white: #FFF;
+  --dark-mode-primary: #191919;
+  --dark-mode-secondary: #31363F;
 }
 
 .App {
@@ -16,6 +18,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #31363F;
+  background-color: var(--dark-mode-primary);
 }
 

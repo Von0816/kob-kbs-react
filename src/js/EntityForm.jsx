@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../css/Form.css" 
+import "../css/EntityForm.css" 
 
 function EntityForm() {
 

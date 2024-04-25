@@ -1,5 +1,5 @@
 #create-entity-form {
-  background-color: var(--tertiary-color);
+  background-color: var(--tertiary-colour);
   width: 50%;
   padding: 2em;
   border-radius: 1rem;
@@ -27,7 +27,7 @@
 
 .form-input:focus {
   outline: none;
-  border-color: var(--primary-color);
+  border-color: var(--primary-colour);
 }
 
 .form-item.valid .input-error-msg {
@@ -39,7 +39,7 @@
   margin-top: .25em;
   font-size: .85em;
   visibility: visible;
-  color: var(--error-color);
+  color: var(--error-primary);
 }
 
 #date-input {
@@ -52,7 +52,7 @@
   color: var(--pure-white);
   cursor: pointer;
   align-self: center;
-  background-color: var(--secondary-color);
+  background-color: var(--secondary-colour);
   border: none;
   border-radius: 1em;
   font-size: 1.2em;

@@ -12,6 +12,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
     "react-scripts": "5.0.1",
+    "reactflow": "^11.11.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -38,5 +39,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:8050"
+  "proxy": "https://kob-kbs-graph-c0c0f7f4dcc0.herokuapp.com"
 }

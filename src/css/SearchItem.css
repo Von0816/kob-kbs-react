@@ -1,0 +1,21 @@
+.search-list-item {
+  cursor: pointer;
+}
+
+.search-list-item:hover .entity-name {
+  text-decoration-line: underline;
+}
+
+.entity-tag {
+  color: var(--pure-black);
+  margin-right: .5em;
+  border: none;
+  padding: .5em;
+  border-radius: 2em;
+  background-color: var(--pure-white);
+  font-size: .8em;
+}
+
+.entity-name {
+  font-size: 1.2em;
+}

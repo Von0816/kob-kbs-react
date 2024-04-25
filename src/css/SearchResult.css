@@ -1,0 +1,7 @@
+ #search-result-list {
+   display: flex;
+   flex-flow: column;
+   list-style-type: none;
+   color: var(--pure-white);
+   gap: 1em;
+ }
