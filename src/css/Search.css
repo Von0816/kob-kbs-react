@@ -6,15 +6,21 @@
 }
 
 #search-box {
-  width: 50%;
+  box-sizing: border-box;
+  width: 50vw;
   border: none;
-  border-radius: .2rem 0 0 .2rem;
+  border-radius: .2em;
   height: 2.5rem;
   padding: 0 1rem;
   font-size: 1.2em;
   background-color: var(--dark-mode-secondary);
   color: var(--pure-white);
   caret-color: var(--primary-colour);
+  border-bottom: var(--dark-mode-primary) 1px solid;
+}
+
+#search-box.has-data {
+  border-radius: .2em .2em 0 0;
 }
 
 #search-box:focus-visible {

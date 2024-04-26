@@ -1,7 +1,17 @@
  #search-result-list {
-   display: flex;
-   flex-flow: column;
-   list-style-type: none;
-   color: var(--pure-white);
-   gap: 1em;
+  width: 50vw;
+  display: flex;
+  flex-flow: column;
+  list-style-type: none;
+  color: var(--pure-white);
+  padding: 0;
+  margin: 0;
+  background-color: var(--dark-mode-secondary);
+  border-radius: 0 0  .2em .2em;
+ }
+
+ #loading-text {
+  align-self: center;
+  height: 2em;
+  padding: 1em;
  }

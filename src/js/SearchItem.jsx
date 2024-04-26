@@ -11,10 +11,8 @@ function SearchItem(props) {
 
   return(
     <li className="search-list-item" onClick={() => searchItemOnClick(props.entityRequestMapping, props.entityId)} key={props.entityId}>
-      <div>
         <span className='entity-tag'>{props.entityClass}</span>
         <span className='entity-name'>{props.entityName}</span>
-      </div>
     </li>
   )
 

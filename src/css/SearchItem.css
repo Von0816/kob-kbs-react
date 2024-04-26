@@ -1,9 +1,15 @@
 .search-list-item {
+  padding: .5em 1em;
+  height: 2em;
   cursor: pointer;
 }
 
-.search-list-item:hover .entity-name {
-  text-decoration-line: underline;
+.search-list-item:last-child {
+  border-radius: 0 0  .2em .2em;
+}
+
+.search-list-item:hover {
+  background-color: var(--dark-mode-tertiary);
 }
 
 .entity-tag {
