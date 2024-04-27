@@ -24,7 +24,7 @@ function SearchResult(props) {
       prevController.current = controller;
 
       //get all entity with matching name in search
-      axios.get(`${process.env.API_URI}/search?=`, {signal: controller.signal})
+      axios.get(process.env.API_URI+ "/search?=" +searchKeyword, {signal: controller.signal})
         .then(response => {
           for(let entity of response.data) {
             setSearchResult(searchResult => [...searchResult, <SearchItem key={entity.id} entityId={entity.id} entityClass={entity.label} entityRequestMapping={entity.requestMapping} entityName={entity.name}/>])
