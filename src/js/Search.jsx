@@ -9,6 +9,7 @@ function Search() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log(process.env.NODE_ENV);
 
     document.title = "Kuching Old Bazaar Knowledge-based System"
   }, [])
