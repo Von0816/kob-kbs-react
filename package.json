@@ -7,6 +7,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.6.8",
     "react": "^18.2.0",
     "react-cookies": "^0.1.1",
     "react-dom": "^18.2.0",
@@ -39,5 +40,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://kob-kbs-graph-c0c0f7f4dcc0.herokuapp.com"
+  "proxy": "https://kob-kbs-graph-c0c0f7f4dcc0.herokuapp.com/v1"
 }

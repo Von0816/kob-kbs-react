@@ -11,20 +11,35 @@ function Search() {
   useEffect(() => {
 
     document.title = "Kuching Old Bazaar Knowledge-based System"
-    console.log("useEffect executed");
   }, [])
+
+  const debounce = (func, timeout = 300) => {
+    let timer;
+    return(...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {func.apply(this, args); }, timeout);
+    }
+  }
 
   const searchOnChange = (e) => {
     const target = e.target;
-    setSearchKeyword(target.value);
+    if(target.value === "") {
+      setSearchKeyword("");
+    }
+    else {
+      saveKeyword(target);
+    }
   }
+
+  const saveKeyword = debounce((target) => setSearchKeyword(target.value));
+
 
   return(
     <>
       <form id="search-form">
-        <input type="text" id="search-box" name="search-box" value={searchKeyword} onChange={searchOnChange} placeholder="Kuching old bazaar history"/>
+        <input type="text" id="search-box" name="search-box" onChange={searchOnChange} placeholder="Kuching old bazaar history"/>
       </form>
-      {searchKeyword === "" ? null : <SearchResult searchKeyword={searchKeyword} />}
+      <SearchResult searchKeyword={searchKeyword} />
     </>
   )
 }
