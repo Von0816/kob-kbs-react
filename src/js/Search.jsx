@@ -9,8 +9,6 @@ function Search() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(process.env.NODE_ENV);
-    console.log(process.env.REACT_APP_API_URI);
 
     document.title = "Kuching Old Bazaar Knowledge-based System"
   }, [])
