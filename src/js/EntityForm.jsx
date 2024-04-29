@@ -14,10 +14,10 @@ function EntityForm() {
     let bodyData = null;
 
     switch(entity.type) {
-      case "e52_time-span":
+      case "e52-time-span":
         bodyData = JSON.stringify({type: entity.date.type, year: entity.date.year, month: entity.date.month, day: entity.date.day});
         break;
-      case "e22_human_made_object":
+      case "e22-hmo":
         bodyData = JSON.stringify({name: entity.name, type: entity.hmoType});
         break;
       default:
@@ -168,17 +168,17 @@ function EntityForm() {
       <div className="form-item" >
         <label className="input-label">Entity Type</label>
         <select className="form-input" id="entity-type-dropdown" value={entity.type} onChange={entityTypeOnChange}>
-          <option value="e5_event">E5 Event</option>
-          <option value="e21_person">E21 Person</option>
-          <option value="e22_human_made_object">E22 Human Made Object</option>
-          <option value="e30_right">E30 Right</option>
-          <option value="e52_time-span">E52 Time-span</option>
-          <option value="e53_place">E53 Place</option>
-          <option value="e74_group">E74 Group</option>
+          <option value="e5-event">E5 Event</option>
+          <option value="e21-person">E21 Person</option>
+          <option value="e22-human_made_object">E22 Human Made Object</option>
+          <option value="e30-right">E30 Right</option>
+          <option value="e52-time-span">E52 Time-span</option>
+          <option value="e53-place">E53 Place</option>
+          <option value="e74-group">E74 Group</option>
         </select>
       </div>
-      {entity.type === "e52_time-span" ? timeSpan : entityName}
-      {entity.type === "e22_human_made_object" ? hmoType : null}
+      {entity.type === "e52-time-span" ? timeSpan : entityName}
+      {entity.type === "e22-hmo" ? hmoType : null}
       <button id="form-submit-btn" onClick={submit}>Submit</button>
     </form>
   )
