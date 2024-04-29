@@ -7,6 +7,40 @@ function EntityForm() {
   const [entity, setEntity] = useState({type: "e5_event", name: "", date: {type: "date", year: "", month: null, day: null}, hmoType: "building"});
   const [maxDay, setMaxDay] = useState();
 
+  //form submit handler
+  async function submit(e) {
+    e.preventDefault();
+    
+    let bodyData = null;
+
+    switch(entity.type) {
+      case "e52_time-span":
+        bodyData = JSON.stringify({type: entity.date.type, year: entity.date.year, month: entity.date.month, day: entity.date.day});
+        break;
+      case "e22_human_made_object":
+        bodyData = JSON.stringify({name: entity.name, type: entity.hmoType});
+        break;
+      default:
+        bodyData = entity.name
+        break;
+    }
+
+    await fetch(`${process.env.REACT_APP_API_URI}/` + entity.type, {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: bodyData 
+    }) 
+    .then(response => {
+      if(response.status === 201) {
+        alert("Entity Created")
+      }
+    })
+    .catch(error => alert(error))
+  }
+
   //onChange handler
   const entityTypeOnChange = e => {
     const target = e.target;
@@ -127,39 +161,6 @@ function EntityForm() {
     </div>
 
 
-  //form submit handler
-  async function submit(e) {
-    e.preventDefault();
-    
-    let bodyData = null;
-
-    switch(entity.type) {
-      case "e52_time-span":
-        bodyData = JSON.stringify({type: entity.date.type, year: entity.date.year, month: entity.date.month, day: entity.date.day});
-        break;
-      case "e22_human_made_object":
-        bodyData = JSON.stringify({name: entity.name, type: entity.hmoType});
-        break;
-      default:
-        bodyData = entity.name
-        break;
-    }
-
-    await fetch("/" + entity.type, {
-      method: "POST",
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      },
-      body: bodyData 
-    }) 
-    .then(response => {
-      if(response.status === 201) {
-        alert("Entity Created")
-      }
-    })
-    .catch(error => alert(error))
-  }
 
   //return component
   return(

@@ -14,7 +14,7 @@ function EntityDetails() {
 
   const getEntity = async () => {
 
-    await fetch(`/${entityRequestMapping}/id/${entityId}`)
+    await fetch(`${process.env.REACT_APP_API_URI}/${entityRequestMapping}/id/${entityId}`)
     .then(response => response.json())
     .then(entity => {
       document.title = entity.name
