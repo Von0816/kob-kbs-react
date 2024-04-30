@@ -1,0 +1,26 @@
+.custom-node label {
+  display: block;
+  color: #777;
+  font-size: 12px;
+}
+
+.react-flow__handle {
+  opacity: 0;
+}
+
+.react-flow__edge-txtbg {
+  fill: var(--dark-mode-primary);
+}
+
+.entity-name {
+  max-width: 50px;
+  max-height: 50px;
+  text-wrap: wrap;
+  font-size: .4em;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: var(--dark-mode-primary);
+}

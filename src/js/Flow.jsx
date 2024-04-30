@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { Background, Controls, MiniMap, ReactFlow } from "reactflow";
+import { useEffect, useMemo } from "react";
+import { Background, Controls, MiniMap, ReactFlow, MarkerType } from "reactflow";
 
-import 'reactflow/dist/style.css'
+import 'reactflow/dist/style.css';
 
 function Flow() {
 
@@ -11,17 +11,22 @@ function Flow() {
   }, [])
 
   const initialNodes = [
-    {id: '1', position: {x: 0, y: 0}, data: {label: '1'}},
-    {id: '2', position: {x: 0, y: 100}, data: {label: '2'}}
+    {id: '1', type: 'textUpdater', position: {x: 0, y: 0}, data: {label: '1'}},
+    {id: '2', type: 'textUpdater', position: {x: 0, y: 100}, data: {label: '2'}}
   ] 
 
   const initialEdges = [
-    {id: 'e1-2', source: '1', target: '2', data: {label: 'test'}}
+    { id: 'e1-2', 
+      source: '1', 
+      target: '2', 
+      markerEnd: {type: MarkerType.ArrowClosed},
+      label: 'test'
+    }
   ]
 
   return(
     <>
-      <ReactFlow nodes={initialNodes} edges={initialEdges} nodesConnectable={false}>
+      <ReactFlow nodes={initialNodes} edges={initialEdges}  >
         <Controls />
         <MiniMap />
         <Background variant="dots" gap={12} size={1} />
