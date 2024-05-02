@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import '../css/EntityDetails.css'
+import { monthToString } from '../utility/util';
 
 export default function EntityDetails(props) {
   const propertiesButton = useRef();
@@ -23,37 +24,6 @@ export default function EntityDetails(props) {
   const relationshipBtnOnClick = () => {
     propertiesButton.current.classList.remove("active")
     relationshipButton.current.classList.add("active")
-  }
-
-  const monthToString = (monthInt) => {
-    switch(monthInt) {
-      case 1:
-        return "January";
-      case 2:
-        return "February";
-      case 3:
-        return "March";
-      case 4:
-        return "April";
-      case 5:
-        return "May";
-      case 6:
-        return "June";
-      case 7:
-        return "July";
-      case 8:
-        return "August";
-      case 9:
-        return "September";
-      case 10:
-        return "October";
-      case 11:
-        return "November";
-      case 12:
-        return "December";
-      default:
-        return null;
-    }
   }
 
   const entityProperties = () => {

@@ -72,6 +72,38 @@ export function getEdgeParams(source, target) {
   };
 }
 
+export function monthToString(monthInt) {
+    switch(monthInt) {
+      case 1:
+        return "January";
+      case 2:
+        return "February";
+      case 3:
+        return "March";
+      case 4:
+        return "April";
+      case 5:
+        return "May";
+      case 6:
+        return "June";
+      case 7:
+        return "July";
+      case 8:
+        return "August";
+      case 9:
+        return "September";
+      case 10:
+        return "October";
+      case 11:
+        return "November";
+      case 12:
+        return "December";
+      default:
+        return null;
+    }
+
+}
+
 export function createE5Event(event) {
   const nodes = [];
   const edges = [];
@@ -111,7 +143,7 @@ export function createE5Event(event) {
     nodes.push({  id: timeSpan.id, 
                   type: 'circle', 
                   position: { x, y},
-                  data: {class: 'E52 Time-span', type: timeSpan.type, name: timeSpan.year, day: timeSpan.day, month: timeSpan.month, year: timeSpan.year, fallsWithin: timeSpan.fallsWithin}});
+                  data: {class: 'E52 Time-span', type: timeSpan.type, name: `${timeSpan.day} ${monthToString(timeSpan.month)} ${timeSpan.year}`, day: timeSpan.day, month: timeSpan.month, year: timeSpan.year, fallsWithin: timeSpan.fallsWithin}});
     edges.push({  id: `${event.id} - ${timeSpan.id}`, 
                   source: event.id, 
                   target: timeSpan.id, 
