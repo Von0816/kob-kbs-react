@@ -14,7 +14,7 @@ function EntityForm() {
       document.getElementById("entity-name").classList.add("valid")
     }
     else {
-      document.getElementById("time-span-year").classList.add("valid");
+      // document.getElementById("time-span-year").classList.add("valid");
     }
     setEntity({type: target.value, name: "", date: {type: "date", year: "", month: null, day: null}, hmoType: "building"});
   }
@@ -176,8 +176,8 @@ function EntityForm() {
           <option value="e74-group">E74 Group</option>
         </select>
       </div>
-      {entity.type === "e52_time-span" ? timeSpan : entityName}
-      {entity.type === "e22_human_made_object" ? hmoType : null}
+      {entity.type === "e52-time-span" ? timeSpan : entityName}
+      {entity.type === "e22-hmo" ? hmoType : null}
       <button id="form-submit-btn" onClick={submit}>Submit</button>
     </form>
   )

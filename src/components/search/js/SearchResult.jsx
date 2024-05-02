@@ -39,7 +39,7 @@ function SearchResult(props) {
   }, [searchKeyword]);
 
   return(
-    <ul id='search-result-list'>
+    <ul id='search-result__list'>
       {searchResult}
     </ul>
   )

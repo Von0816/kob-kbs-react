@@ -22,3 +22,6 @@
   background-color: var(--dark-mode-primary);
 }
 
+.overflow-scroll {
+  overflow: scroll;
+}

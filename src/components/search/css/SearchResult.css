@@ -1,4 +1,4 @@
- #search-result-list {
+ #search-result__list {
   width: 50vw;
   display: flex;
   flex-flow: column;
@@ -10,7 +10,7 @@
   border-radius: 0 0  .2em .2em;
  }
 
- #loading-text {
+ #search-result__loading-text {
   align-self: center;
   height: 2em;
   padding: 1em;

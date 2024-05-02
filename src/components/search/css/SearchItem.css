@@ -1,18 +1,18 @@
-.search-list-item {
+.search-item__entity {
   padding: .5em 1em;
   height: 2em;
   cursor: pointer;
 }
 
-.search-list-item:last-child {
+.search-item__entity:last-child {
   border-radius: 0 0  .2em .2em;
 }
 
-.search-list-item:hover {
+.search-item__entity:hover {
   background-color: var(--dark-mode-tertiary);
 }
 
-.entity-tag {
+.search-item__entity-tag {
   color: var(--pure-black);
   margin-right: .5em;
   border: none;
@@ -22,6 +22,6 @@
   font-size: .8em;
 }
 
-.entity-name {
+.search-item__entity-name {
   font-size: 1.2em;
 }

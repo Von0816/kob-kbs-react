@@ -36,8 +36,8 @@ function Search() {
 
   return(
     <>
-      <form id="search-form">
-        <input type="text" id="search-box" name="search-box" onChange={searchOnChange} placeholder="Kuching old bazaar history"/>
+      <form id="search__search-form">
+        <input type="text" id="search__search-box" name="search__search-box" onChange={searchOnChange} placeholder="Kuching old bazaar history"/>
       </form>
       <SearchResult searchKeyword={searchKeyword} />
     </>
