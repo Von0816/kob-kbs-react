@@ -1,3 +1,8 @@
+#site-banner {
+  width: 45vw;
+  margin-bottom: 5em;
+}
+
 #search__form {
   display: flex;
   width: 100vw;

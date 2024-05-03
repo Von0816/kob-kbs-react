@@ -19,3 +19,7 @@
   text-align: center;
   color: var(--dark-mode-primary);
 }
+
+.custom-node {
+  cursor: pointer;
+}

@@ -112,3 +112,42 @@
   width: 50%;
   font-weight: 500;
 }
+
+
+.entity-relationship__entity-list {
+  display: flex;
+  flex-flow: column;
+  gap: 1em;
+  margin: .5em 0;
+}
+
+.entity-list__entity {
+  cursor: pointer;
+  display: flex;
+  flex-flow: column;
+  gap: .5em;
+  padding: .5em;
+  border: 1px solid rgba(0, 0, 0, .5);
+  border-radius: .5em;
+}
+
+.entity-list__entity:hover {
+  background: rgba(0, 0, 0, .1);
+}
+
+.entity-relationship__name {
+  font-weight: 600;
+}
+
+.entity-list__entity-class {
+  font-size: .8em;
+  margin: 0;
+  padding: .2em .5em;
+  width: fit-content;
+  background-color: var(--secondary-colour);
+  border-radius: 2em;
+  font-weight: 600;
+}
+
+#entity-relationship__p152 .entity-relationship__entity-list {
+}
