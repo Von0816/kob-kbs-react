@@ -17,7 +17,7 @@ function App() {
         <Route path='/' element={<Search />}/>
         <Route path='/search' element={<SearchResult />}/>
         <Route path='/admin/create-entity' element={<EntityForm />}/>
-        <Route path='/entity/:entityRequestMapping/:entityId' element={<EntityGraph />}/>
+        <Route path='/entity/:entityRequestMapping/:entityId' forceRefresh={true} element={<EntityGraph />}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/flow' element={<Flow />}/>
       </Routes>

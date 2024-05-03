@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { createSearchParams, useNavigate } from "react-router-dom";
+import banner from '../img/banner.png'
 
 import SearchResult from './SearchResult.jsx'
 import "../css/Search.css"
 
 function Search() {
   const [searchKeyword, setSearchKeyword] = useState("");
-  const navigate = useNavigate();
 
   useEffect(() => {
 
@@ -36,8 +35,9 @@ function Search() {
 
   return(
     <>
+      <img id="site-banner" src={banner} alt="site banner"/>
       <form id="search__search-form">
-        <input type="text" id="search__search-box" name="search__search-box" onChange={searchOnChange} placeholder="Kuching old bazaar history"/>
+        <input type="text" id="search__search-box" name="search__search-box" onChange={searchOnChange} placeholder="Search Kuching old bazaar history"/>
       </form>
       <SearchResult searchKeyword={searchKeyword} />
     </>

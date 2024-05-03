@@ -5,9 +5,9 @@ import CustomNode from "./CustomNode";
 import FloatingEdge from "./FloatingEdge" 
 import FloatingConnectionLine from "../utility/FloatingConnectionLine"
 import '../css/EntityGraph.css'
-import { createE21PersonGraph, createE22HMO, createE5Event } from "../utility/util";
 import axios from "axios";
 import EntityDetails from "./EntityDetails";
+import DrawGraph from "../utility/DrawGraph";
 
 export default function EntityGraph() {
   const [node, setNode, onNodeChange] = useNodesState([]);
@@ -18,62 +18,22 @@ export default function EntityGraph() {
   const edgeType = useMemo(() => ({floating: FloatingEdge}), []);
 
   useEffect(() => {
-
     getEntity();
-  }, []);
-
-  useEffect(() => {
-
-  }, [selectedNode]);
+  }, [entityRequestMapping, entityId]);
 
   const getEntity = async () => {
 
     axios.get(`/${entityRequestMapping}/id/${entityId}`).then(response => {
       const entity = response.data;
-      generateNodesAndEdges(entity);
+
+      const {nodes: generatedNodes, edges: generatedEdges} = DrawGraph(entityRequestMapping, entity);
+
       document.title = entity.name;
 
+      setNode(generatedNodes);
+      setEdge(generatedEdges);
+      setSelectedNode({});
     })
-  }
-
-  const generateNodesAndEdges = (entity) => {
-    switch(entityRequestMapping) {
-      case "e5-event":
-        {
-          console.log(entity);
-          const {nodes: generatedNodes, edges: generatedEdges} = createE5Event(entity);
-          setNode(generatedNodes);
-          setEdge(generatedEdges);
-          break;
-        }
-      case "e21-person":
-        {
-          console.log(entity);
-          const {nodes: generatedNodes, edges: generatedEdges} = createE21PersonGraph(entity);
-          setNode(generatedNodes);
-          setEdge(generatedEdges);
-          break;
-        }
-      case "e22-hmo":
-        {
-          console.log(entity);
-          const {nodes: generatedNodes, edges: generatedEdges} = createE22HMO(entity);
-          setNode(generatedNodes);
-          setEdge(generatedEdges);
-          break;
-        }
-      case "e52-time-span":
-        console.log(entity);
-        break;
-      case "e52-place":
-        console.log(entity);
-        break;
-      case "e74-group":
-        console.log(entity);
-        break;
-      default:
-        return {nodes: null, edges: null};
-    }
   }
 
   const onNodeClick = (e, node) => {
@@ -93,7 +53,6 @@ export default function EntityGraph() {
         edgeTypes={edgeType}
         connectionLineComponent={FloatingConnectionLine}
         fitView>
-        {selectedNode.haske}
         {Object.keys(selectedNode).length === 0 ? null : <EntityDetails entity={selectedNode} setEntity={setSelectedNode} />}
         <Controls />
         <MiniMap />

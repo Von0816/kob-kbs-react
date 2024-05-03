@@ -1,16 +1,19 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../css/EntityDetails.css'
 import { monthToString } from '../utility/util';
 
 export default function EntityDetails(props) {
+  const navigate = useNavigate();
   const propertiesButton = useRef();
   const relationshipButton = useRef();
+  const [isProperties, setIsProperties] = useState(true);
   const entity = props.entity.data;
 
   useEffect(() => {
     propertiesButton.current = document.getElementById("entity-details__properties-button");
     relationshipButton.current = document.getElementById("entity-details__relationship-button");
-  })
+  }, [])
 
   const closeOnClick = () => {
     props.setEntity({});
@@ -19,11 +22,13 @@ export default function EntityDetails(props) {
   const propertiesBtnOnclick = () => {
     relationshipButton.current.classList.remove("active")
     propertiesButton.current.classList.add("active")
+    setIsProperties(true);
   }
 
   const relationshipBtnOnClick = () => {
     propertiesButton.current.classList.remove("active")
     relationshipButton.current.classList.add("active")
+    setIsProperties(false);
   }
 
   const entityProperties = () => {
@@ -94,6 +99,69 @@ export default function EntityDetails(props) {
     }
   }
 
+  const entityRelationship = () => {
+    if(entity.class === "E21 Person") {
+      const parentEl = [];
+      const residenceEl = [];
+      const rightEl = [];
+
+      entity.parent.forEach((parent) => {
+        parentEl.push(
+        <div className='entity-list__entity' key={parent.id} onClick={() => entityListItemOnClick('e21-person', parent.id)}>
+          <span className='entity-list__entity-class'>E21 Person</span>
+          <span className='entity-list__entity-name'>{parent.name}</span>
+        </div>
+        )
+      })
+
+      entity.residence.forEach((residence) => {
+        residenceEl.push(
+        <div className='entity-list__entity' key={residence.id} onClick={() => entityListItemOnClick('e53-place', residence.id)}>
+          <span className='entity-list__entity-class'>E53 Place</span>
+          <span className='entity-list__entity-name'>{residence.name}</span>
+        </div>
+        )
+      })
+
+      entity.right.forEach((right) => {
+        rightEl.push(
+        <div className='entity-list__entity' key={right.id} onClick={() => entityListItemOnClick('e30-right', right.id)}>
+          <span className='entity-list__entity-class'>E30 Right</span>
+          <span className='entity-list__entity-name'>{right.name}</span>
+        </div>
+        )
+      })
+
+      return(
+        <div>
+          <div id='entity-relationship__p152'>
+            <span className='entity-relationship__name'>has parent</span>
+            <div className='entity-relationship__entity-list'>
+              {parentEl}
+            </div>
+          </div>
+          <div id='entity-relationship__p74'>
+            <span className='entity-relationship__name'>has current or former residence</span>
+            <div className='entity-relationship__entity-list'>
+              {residenceEl}
+            </div>
+          </div>
+          <div id='entity-relationship__p30'>
+            <span className='entity-relationship__name'>possesses</span>
+            <div className='entity-relationship__entity-list'>
+              {rightEl}
+            </div>
+          </div>
+        </div>
+      )
+    }
+  }
+
+  const entityListItemOnClick = (entityRequestMapping, entityId) => {
+
+    navigate(`/entity/${entityRequestMapping}/${entityId}`);
+  }
+
   return(
     <div id="entity-details">
       <button id='entity-details__close-button' onClick={closeOnClick}>X</button>
@@ -112,7 +180,7 @@ export default function EntityDetails(props) {
           <span className='button-tab__underline' />
         </button>
       </div>
-      {entityProperties()}
+      {isProperties ? entityProperties() : entityRelationship()}
     </div>
   )
 }
