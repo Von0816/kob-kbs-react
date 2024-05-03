@@ -145,7 +145,7 @@ function EntityForm() {
         break;
     }
 
-    await fetch("/" + entity.type, {
+    await fetch(`${process.env.REACT_APP_API_URI}/${entity.type}`, {
       method: "POST",
       headers: {
         "Accept": "application/json",
