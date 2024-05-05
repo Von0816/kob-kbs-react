@@ -38,8 +38,8 @@ function Search() {
       <img id="site-banner" src={banner} alt="site banner"/>
       <form id="search__search-form">
         <input type="text" id="search__search-box" name="search__search-box" onChange={searchOnChange} placeholder="Search Kuching old bazaar history"/>
+        <SearchResult searchKeyword={searchKeyword} />
       </form>
-      <SearchResult searchKeyword={searchKeyword} />
     </>
   )
 }

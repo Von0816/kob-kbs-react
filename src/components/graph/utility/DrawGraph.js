@@ -27,7 +27,8 @@ const drawE5EventGraph = (event) => {
                   target: location.id, 
                   data: {label: 'took place at'}, 
                   type: 'floating', 
-                  markerEnd: {type: MarkerType.ArrowClosed}});
+                  style: {strokeWidth: 1, stroke: "#B80000"},
+                  markerEnd: {type: MarkerType.ArrowClosed, color: "#B80000"}});
     i++;
   })
 
@@ -40,13 +41,14 @@ const drawE5EventGraph = (event) => {
     nodes.push({  id: timeSpan.id, 
                   type: 'circle', 
                   position: { x, y},
-                  data: {class: 'E52 Time-span', type: timeSpan.type, name: `${timeSpan.day} ${monthToString(timeSpan.month)} ${timeSpan.year}`, day: timeSpan.day, month: timeSpan.month, year: timeSpan.year, fallsWithin: timeSpan.fallsWithin}});
+                  data: {class: 'E52 Time-span', type: timeSpan.type, name: `${timeSpan.day !== 0 ? timeSpan.day : ""} ${monthToString(timeSpan.month) !== null ? monthToString(timeSpan.month) : ""} ${timeSpan.year}`, day: timeSpan.day, month: timeSpan.month, year: timeSpan.year, fallsWithin: timeSpan.fallsWithin}});
     edges.push({  id: `${event.id} - ${timeSpan.id}`, 
                   source: event.id, 
                   target: timeSpan.id, 
                   data: {label: 'falls within'}, 
                   type: 'floating', 
-                  markerEnd: {type: MarkerType.ArrowClosed}});
+                  style: {strokeWidth: 1, stroke: "#B80000"},
+                  markerEnd: {type: MarkerType.ArrowClosed, color: "#B80000"}});
     i++;
   })
 
@@ -65,7 +67,8 @@ const drawE5EventGraph = (event) => {
                   target: participantGroup.id, 
                   data: {label: 'had participant'}, 
                   type: 'floating', 
-                  markerEnd: {type: MarkerType.ArrowClosed}});
+                  style: {strokeWidth: 1, stroke: "#B80000"},
+                  markerEnd: {type: MarkerType.ArrowClosed, color: "#B80000"}});
     i++;
   })
 
@@ -84,7 +87,8 @@ const drawE5EventGraph = (event) => {
                   target: participantPerson.id, 
                   data: {label: 'had participant'}, 
                   type: 'floating', 
-                  markerEnd: {type: MarkerType.ArrowClosed}});
+                  style: {strokeWidth: 1, stroke: "#B80000"},
+                  markerEnd: {type: MarkerType.ArrowClosed, color: "#B80000"}});
     i++;
   })
 
@@ -117,7 +121,8 @@ const drawE21PersonGraph = (person) => {
                   target: parent.id, 
                   data: {label: 'has parent'}, 
                   type: 'floating', 
-                  markerEnd: {type: MarkerType.ArrowClosed}});
+                  style: {strokeWidth: 1, stroke: "#B80000"},
+                  markerEnd: {type: MarkerType.ArrowClosed, color: "#B80000"}});
     i++;
   })
 
@@ -136,7 +141,8 @@ const drawE21PersonGraph = (person) => {
                   target: residence.id, 
                   data: {label: 'has current or former residence'}, 
                   type: 'floating', 
-                  markerEnd: {type: MarkerType.ArrowClosed}});
+                  style: {strokeWidth: 1, stroke: "#B80000"},
+                  markerEnd: {type: MarkerType.ArrowClosed, color: "#B80000"}});
     i++;
   })
 
@@ -155,7 +161,8 @@ const drawE21PersonGraph = (person) => {
                   target: right.id, 
                   data: {label: 'possesses'}, 
                   type: 'floating', 
-                  markerEnd: {type: MarkerType.ArrowClosed}});
+                  style: {strokeWidth: 1, stroke: "#B80000"},
+                  markerEnd: {type: MarkerType.ArrowClosed, color: "#B80000"}});
     i++;
   })
 
@@ -187,8 +194,8 @@ const drawE22HMOGraph = (hmo) => {
                   source: hmo.id, 
                   target: currLoc.id, 
                   data: {label: 'has current location'}, 
-                  type: 'floating', 
-                  markerEnd: {type: MarkerType.ArrowClosed}});
+                  style: {strokeWidth: 1, stroke: "#B80000"},
+                  markerEnd: {type: MarkerType.ArrowClosed, color: "#B80000"}});
     i++;
   })
 
@@ -207,7 +214,8 @@ const drawE22HMOGraph = (hmo) => {
                   target: currPermaLoc.id, 
                   data: {label: 'has current permanent location'}, 
                   type: 'floating', 
-                  markerEnd: {type: MarkerType.ArrowClosed}});
+                  style: {strokeWidth: 1, stroke: "#B80000"},
+                  markerEnd: {type: MarkerType.ArrowClosed, color: "#B80000"}});
     i++;
   })
 
@@ -226,7 +234,8 @@ const drawE22HMOGraph = (hmo) => {
                   target: ownerGroup.id, 
                   data: {label: 'has former or current owner'}, 
                   type: 'floating', 
-                  markerEnd: {type: MarkerType.ArrowClosed}});
+                  style: {strokeWidth: 1, stroke: "#B80000"},
+                  markerEnd: {type: MarkerType.ArrowClosed, color: "#B80000"}});
     i++;
   })
 
@@ -245,7 +254,8 @@ const drawE22HMOGraph = (hmo) => {
                   target: ownerPerson.id, 
                   data: {label: 'has former or current owner'}, 
                   type: 'floating', 
-                  markerEnd: {type: MarkerType.ArrowClosed}});
+                  style: {strokeWidth: 1, stroke: "#B80000"},
+                  markerEnd: {type: MarkerType.ArrowClosed, color: "#B80000"}});
     i++;
   })
 
@@ -288,7 +298,8 @@ const drawE52TimeSpanGraph = (timeSpan) => {
                   target: fallsWithin.id, 
                   data: {label: 'has former or current owner'}, 
                   type: 'floating', 
-                  markerEnd: {type: MarkerType.ArrowClosed}});
+                  style: {strokeWidth: 1, stroke: "#B80000"},
+                  markerEnd: {type: MarkerType.ArrowClosed, color: "#B80000"}});
     i++;
   })
 
@@ -331,7 +342,8 @@ const drawE74GroupGraph = (group) => {
                   target: member.id, 
                   data: {label: 'has former or current owner'}, 
                   type: 'floating', 
-                  markerEnd: {type: MarkerType.ArrowClosed}});
+                  style: {strokeWidth: 1, stroke: "#B80000"},
+                  markerEnd: {type: MarkerType.ArrowClosed, color: "#B80000"}});
     i++;
   })
 

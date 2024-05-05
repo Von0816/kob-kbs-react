@@ -38,6 +38,10 @@ export default function EntityDetails(props) {
           return(
             <div id='entity-details__properties' className='overflow-scroll'>
               <div className='entity-details__properties-item'>
+                <p className='properties-item__label'>type</p>
+                <p className='properties-item__content'>{entity.type}</p>
+              </div>
+              <div className='entity-details__properties-item'>
                 <p className='properties-item__label'>day</p>
                 <p className='properties-item__content'>{entity.day}</p>
               </div>
@@ -51,9 +55,27 @@ export default function EntityDetails(props) {
               </div>
             </div>
           )
+        case "year":
+          return(
+            <div id='entity-details__properties' className='overflow-scroll'>
+              <div className='entity-details__properties-item'>
+                <p className='properties-item__label'>type</p>
+                <p className='properties-item__content'>{entity.type}</p>
+              </div>
+              <div className='entity-details__properties-item'>
+                <p className='properties-item__label'>year</p>
+                <p className='properties-item__content'>{entity.year}</p>
+              </div>
+            </div>
+          )
         case "decade":
           return(
             <div id='entity-details__properties' className='overflow-scroll'>
+              <div className='entity-details__properties-item'>
+                <p className='properties-item__label'>type</p>
+                <p className='properties-item__content'>{entity.type}</p>
+              </div>
+
               <div className='entity-details__properties-item'>
                 <p className='properties-item__label'>year</p>
                 <p className='properties-item__content'>{entity.year}</p>
@@ -63,6 +85,10 @@ export default function EntityDetails(props) {
         case "century":
           return(
             <div id='entity-details__properties' className='overflow-scroll'>
+              <div className='entity-details__properties-item'>
+                <p className='properties-item__label'>type</p>
+                <p className='properties-item__content'>{entity.type}</p>
+              </div>
               <div className='entity-details__properties-item'>
                 <p className='properties-item__label'>year</p>
                 <p className='properties-item__content'>{entity.year}</p>
@@ -167,7 +193,7 @@ export default function EntityDetails(props) {
       <button id='entity-details__close-button' onClick={closeOnClick}>X</button>
       <div id='entity-details__top-section'>
         <p id='entity-details__entity-class'>{entity.class} </p>
-        <p id='entity-details__entity-name'>{entity.class === "E52 Time-span" ? `${entity.day} ${monthToString(entity.month)} ${entity.year}` : entity.name}</p>
+        <p id='entity-details__entity-name'>{entity.name}</p>
       </div>
       <hr id='entity-details__hr'/>
       <div id='entity-details__button-tab'>

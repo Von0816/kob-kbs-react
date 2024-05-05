@@ -2,18 +2,28 @@
   opacity: 0;
 }
 
+.custom-node:hover {
+  filter: drop-shadow(0 0 .5em var(--secondary-colour));
+}
+
+.custom-node svg circle {
+  fill: var(--secondary-colour);
+}
+
 .react-flow__edge-txtbg {
   fill: var(--dark-mode-primary);
 }
 
 .react-flow__entity-name {
   max-width: 50px;
-  max-height: 50px;
-  text-wrap: wrap;
-  font-size: .4em;
-  font-weight: 500;
+  max-height: 25px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: .6em;
+  font-weight: 600;
   position: absolute;
-  top: 35%;
+  top: 48%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;

@@ -4,10 +4,12 @@ import { Controls, MiniMap, ReactFlow,  useNodesState, useEdgesState, ReactFlowP
 import CustomNode from "./CustomNode";
 import FloatingEdge from "./FloatingEdge" 
 import FloatingConnectionLine from "../utility/FloatingConnectionLine"
-import '../css/EntityGraph.css'
 import axios from "axios";
 import EntityDetails from "./EntityDetails";
 import DrawGraph from "../utility/DrawGraph";
+
+import '../css/EntityGraph.css'
+import 'reactflow/dist/style.css';
 
 export default function EntityGraph() {
   const [node, setNode, onNodeChange] = useNodesState([]);

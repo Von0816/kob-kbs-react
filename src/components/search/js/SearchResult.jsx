@@ -38,6 +38,15 @@ function SearchResult(props) {
     }
   }, [searchKeyword]);
 
+  useEffect(() => {
+    if(searchResult.length > 0) {
+      document.getElementById("search__search-box").classList.add("has-data");
+    }
+    else {
+      document.getElementById("search__search-box").classList.remove("has-data");
+    }
+  }, [searchResult])
+
   return(
     <ul id='search-result__list'>
       {searchResult}

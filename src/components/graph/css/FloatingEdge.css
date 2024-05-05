@@ -1,8 +1,8 @@
 .react-flow__edge-label {
   position: absolute;
   padding: 1em;
-  color: var(--pure-white);
-  font-size: .4em;
-  font-weight: 500;
-  background: var(--dark-mode-primary);
+  color: var(--pure-black);
+  font-size: .6em;
+  font-weight: 600;
+  background: var(--tertiary-colour);
 }

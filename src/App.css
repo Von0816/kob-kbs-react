@@ -9,6 +9,7 @@
   --dark-mode-primary: #191919;
   --dark-mode-secondary: #31363F;
   --dark-mode-tertiary: #4F545E;
+  --shadow: rgba(0, 0, 0, 25%);
 }
 
 .App {
@@ -19,7 +20,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: var(--dark-mode-primary);
+  background-color: var(--tertiary-colour);
 }
 
 .overflow-scroll {
