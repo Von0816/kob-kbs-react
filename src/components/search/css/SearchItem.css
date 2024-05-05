@@ -2,6 +2,7 @@
   padding: .5em 1em;
   height: 2em;
   cursor: pointer;
+  display: flex;
 }
 
 .search-item__entity:last-child {
@@ -9,7 +10,7 @@
 }
 
 .search-item__entity:hover {
-  background-color: var(--dark-mode-tertiary);
+  background-color: #C37500;
 }
 
 .search-item__entity-tag {
@@ -17,11 +18,24 @@
   margin-right: .5em;
   border: none;
   padding: .5em;
+  width: 20%;
   border-radius: 2em;
-  background-color: var(--pure-white);
+  background-color: var(--tertiary-colour);
   font-size: .8em;
+  font-weight: 600;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .search-item__entity-name {
+  color: var(--pure-black);
+  box-sizing: border-box;
   font-size: 1.2em;
+  padding-left: 10px;
+  width: 80%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
