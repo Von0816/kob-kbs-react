@@ -10,6 +10,7 @@ import DrawGraph from "../utility/DrawGraph";
 
 import '../css/EntityGraph.css'
 import 'reactflow/dist/style.css';
+import { getEntityLabel } from "../utility/util";
 
 export default function EntityGraph() {
   const [node, setNode, onNodeChange] = useNodesState([]);
@@ -26,9 +27,9 @@ export default function EntityGraph() {
   const getEntity = async () => {
 
     axios.get(`/${entityRequestMapping}/id/${entityId}`).then(response => {
-      const entity = response.data;
+      const entity = {label: getEntityLabel(entityRequestMapping), ...response.data};
 
-      const {nodes: generatedNodes, edges: generatedEdges} = DrawGraph(entityRequestMapping, entity);
+      const {nodes: generatedNodes, edges: generatedEdges} = DrawGraph(entity);
 
       document.title = entity.name;
 

@@ -14,8 +14,8 @@
 
 .App {
   /* text-align: center; */
-  height: 100vh;
   font-family: "Open Sans", sans-serif;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;

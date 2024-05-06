@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import '../css/EntityDetails.css'
 import { monthToString } from '../utility/util';
+import EntityProperty from './EntityProperty';
+import EntityRelationship from './EntityRelationship';
 
 export default function EntityDetails(props) {
-  const navigate = useNavigate();
   const propertiesButton = useRef();
   const relationshipButton = useRef();
   const [isProperties, setIsProperties] = useState(true);
@@ -14,6 +14,12 @@ export default function EntityDetails(props) {
     propertiesButton.current = document.getElementById("entity-details__properties-button");
     relationshipButton.current = document.getElementById("entity-details__relationship-button");
   }, [])
+
+  useEffect(() => {
+    setIsProperties(true);
+    relationshipButton.current.classList.remove("active")
+    propertiesButton.current.classList.add("active")
+  }, [entity])
 
   const closeOnClick = () => {
     props.setEntity({});
@@ -31,168 +37,109 @@ export default function EntityDetails(props) {
     setIsProperties(false);
   }
 
+  const generateTimeSpanName = (type, day, month, year) => {
+    if(type === "date") {
+      return `${day} ${monthToString(month)} ${year}}`
+    }
+    else {
+      return `${year}`;
+    }
+  }
+
   const entityProperties = () => {
     if(entity.class === "E52 Time-span") {
-      switch(entity.type){
-        case "date":
-          return(
-            <div id='entity-details__properties' className='overflow-scroll'>
-              <div className='entity-details__properties-item'>
-                <p className='properties-item__label'>type</p>
-                <p className='properties-item__content'>{entity.type}</p>
-              </div>
-              <div className='entity-details__properties-item'>
-                <p className='properties-item__label'>day</p>
-                <p className='properties-item__content'>{entity.day}</p>
-              </div>
-              <div className='entity-details__properties-item'>
-                <p className='properties-item__label'>month</p>
-                <p className='properties-item__content'>{monthToString(entity.month)}</p>
-              </div>
-              <div className='entity-details__properties-item'>
-                <p className='properties-item__label'>year</p>
-                <p className='properties-item__content'>{entity.year}</p>
-              </div>
-            </div>
-          )
-        case "year":
-          return(
-            <div id='entity-details__properties' className='overflow-scroll'>
-              <div className='entity-details__properties-item'>
-                <p className='properties-item__label'>type</p>
-                <p className='properties-item__content'>{entity.type}</p>
-              </div>
-              <div className='entity-details__properties-item'>
-                <p className='properties-item__label'>year</p>
-                <p className='properties-item__content'>{entity.year}</p>
-              </div>
-            </div>
-          )
-        case "decade":
-          return(
-            <div id='entity-details__properties' className='overflow-scroll'>
-              <div className='entity-details__properties-item'>
-                <p className='properties-item__label'>type</p>
-                <p className='properties-item__content'>{entity.type}</p>
-              </div>
-
-              <div className='entity-details__properties-item'>
-                <p className='properties-item__label'>year</p>
-                <p className='properties-item__content'>{entity.year}</p>
-              </div>
-            </div>
-          )
-        case "century":
-          return(
-            <div id='entity-details__properties' className='overflow-scroll'>
-              <div className='entity-details__properties-item'>
-                <p className='properties-item__label'>type</p>
-                <p className='properties-item__content'>{entity.type}</p>
-              </div>
-              <div className='entity-details__properties-item'>
-                <p className='properties-item__label'>year</p>
-                <p className='properties-item__content'>{entity.year}</p>
-              </div>
-            </div>
-          )
-        default:
-          break;
-      }
+      return(
+        <div id='entity-details__properties' className='overflow-scroll'>
+          <EntityProperty label="type" value={entity.type}/>
+          {entity.day > 0 ? <EntityProperty label="day" value={entity.day}/> : null}
+          {entity.month > 0 ? <EntityProperty label="month" value={monthToString(entity.month)}/> : null }
+          <EntityProperty label="year" value={entity.year}/>
+        </div>
+      )
     }
     else if(entity.class === "E22 Human Made Object") {
       return(
         <div id='entity-details__properties' className='overflow-scroll'>
-          <div className='entity-details__properties-item'>
-            <p className='properties-item__label'>name</p>
-            <p className='properties-item__content'>{entity.name}</p>
-          </div>
-          <div className='entity-details__properties-item'>
-            <p className='properties-item__label'>type</p>
-            <p className='properties-item__content'>{entity.type}</p>
-          </div>
+            <EntityProperty label="name" value={entity.name}/>
+            <EntityProperty label="type" value={entity.type}/>
         </div>
       )
     }
     else {
       return(
         <div id='entity-details__properties' className='overflow-scroll'>
-          <div className='entity-details__properties-item'>
-            <p className='properties-item__label'>name</p>
-            <p className='properties-item__content'>{entity.name}</p>
-          </div>
+          <EntityProperty label="name" value={entity.name} />
         </div>
       )
     }
   }
 
   const entityRelationship = () => {
-    if(entity.class === "E21 Person") {
-      const parentEl = [];
-      const residenceEl = [];
-      const rightEl = [];
+    switch(entity.label) {
+      case "E5 Event":
+        const timeSpanList = entity.timeSpan.map((timeSpan) => ({label: "E52 Time-span", requestMapping: "e52-time-span", name:  generateTimeSpanName(timeSpan.type, timeSpan.day, timeSpan.month, timeSpan.year),...timeSpan}));
+        const participantList = [...entity.participantPerson.map((person) => ({label: "E21 Person", requestMapping: "e21-person", ...person})), ...entity.participantGroup.map((group) => ({label: "E74 Group", requestMapping: "e74-group", ...group}))];
+      const locationList = entity.location.map((location) => ({label: "E53 Place", requestMapping: "e53-place", ...location}))
 
-      entity.parent.forEach((parent) => {
-        parentEl.push(
-        <div className='entity-list__entity' key={parent.id} onClick={() => entityListItemOnClick('e21-person', parent.id)}>
-          <span className='entity-list__entity-class'>E21 Person</span>
-          <span className='entity-list__entity-name'>{parent.name}</span>
-        </div>
+        return(
+          <>
+            <EntityRelationship data={{id: "P4", label: "has time-span", entityList: timeSpanList}}/>
+            <EntityRelationship data={{id: "P7", label: "took place at", entityList: locationList}}/>
+            <EntityRelationship data={{id: "P11", label: "had participant", entityList: participantList}}/>
+          </>
         )
-      })
+      case "E21 Person":
+        const parentList = entity.parent.map((parent) => ({label: "E21 Person", requestMapping: "e21-person", ...parent}));
+        const residenceList = entity.residence.map((residence) => ({label: "E53 Place", requestMapping: "e53-place", ...residence}));
+        const rightList = entity.right.map((right) => ({label: "E30 Right", requestMapping: "e30-right", ...right}));
 
-      entity.residence.forEach((residence) => {
-        residenceEl.push(
-        <div className='entity-list__entity' key={residence.id} onClick={() => entityListItemOnClick('e53-place', residence.id)}>
-          <span className='entity-list__entity-class'>E53 Place</span>
-          <span className='entity-list__entity-name'>{residence.name}</span>
-        </div>
+        return(
+          <>
+            <EntityRelationship data={{id: "P30", label: "possesses", entityList: rightList}}/>
+            <EntityRelationship data={{id: "P51", label: "has current or former residence", entityList: residenceList}}/>
+            <EntityRelationship data={{id: "P152", label: "has parent", entityList: parentList}}/>
+          </>
         )
-      })
+      case "E22 Human Made Object":
+        const ownerList = [...entity.ownerPerson.map((person) => ({label: "E21 Person", requestMapping: "e21-person", ...person})), ...entity.ownerGroup.map((group) => ({label: "E74 Group", requestMapping: "e74-group", ...group}))];
+        const currLocationList = entity.currLoc.map((location) => ({label: "E53 Place", requestMapping: "e53-place", ...location}));
+        const currPermaLocationList = entity.currPermaLoc.map((location) => ({label: "E53 Place", requestMapping: "e53-place", ...location}))
 
-      entity.right.forEach((right) => {
-        rightEl.push(
-        <div className='entity-list__entity' key={right.id} onClick={() => entityListItemOnClick('e30-right', right.id)}>
-          <span className='entity-list__entity-class'>E30 Right</span>
-          <span className='entity-list__entity-name'>{right.name}</span>
-        </div>
+        return(
+          <>
+            <EntityRelationship data={{id: "P51", label: "has current or former owner", entityList: ownerList}}/>
+            <EntityRelationship data={{id: "P54", label: "has current permanent location", entityList: currPermaLocationList}}/>
+            <EntityRelationship data={{id: "P55", label: "has current location", entityList: currLocationList}}/>
+          </>
         )
-      })
+      case "E52 Time-span":
+        const fallsWithinList = entity.fallsWithin.map((timeSpan) => ({label: "E52 Time-span", requestMapping: "e52-time-span", name:  generateTimeSpanName(timeSpan.type, timeSpan.day, timeSpan.month, timeSpan.year), ...timeSpan}))
 
-      return(
-        <div>
-          <div id='entity-relationship__p152'>
-            <span className='entity-relationship__name'>has parent</span>
-            <div className='entity-relationship__entity-list'>
-              {parentEl}
-            </div>
-          </div>
-          <div id='entity-relationship__p74'>
-            <span className='entity-relationship__name'>has current or former residence</span>
-            <div className='entity-relationship__entity-list'>
-              {residenceEl}
-            </div>
-          </div>
-          <div id='entity-relationship__p30'>
-            <span className='entity-relationship__name'>possesses</span>
-            <div className='entity-relationship__entity-list'>
-              {rightEl}
-            </div>
-          </div>
-        </div>
-      )
+        return(
+          <>
+            <EntityRelationship data={{id: "P86", label: "falls within", entityList: fallsWithinList}}/>
+          </>
+        )
+      case "74 Group":
+        const memberList = entity.member.map((member) => ({label: "E21 Person", requestMapping: "e21-person", ...member}))
+
+        return(
+          <>
+            <EntityRelationship data={{id: "P107", label: "has current or fomer member", entityList: memberList}}/>
+          </>
+        )
+      default:
+        return(
+          <p>This entity has no relationship.</p>
+        )
     }
-  }
-
-  const entityListItemOnClick = (entityRequestMapping, entityId) => {
-
-    navigate(`/entity/${entityRequestMapping}/${entityId}`);
   }
 
   return(
     <div id="entity-details">
       <button id='entity-details__close-button' onClick={closeOnClick}>X</button>
       <div id='entity-details__top-section'>
-        <p id='entity-details__entity-class'>{entity.class} </p>
+        <p id='entity-details__entity-label'>{entity.label} </p>
         <p id='entity-details__entity-name'>{entity.name}</p>
       </div>
       <hr id='entity-details__hr'/>

@@ -20,7 +20,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: .6em;
+  font-size: 1.2ex; 
   font-weight: 600;
   position: absolute;
   top: 48%;

@@ -21,6 +21,7 @@ function Search() {
   }
 
   const searchOnChange = (e) => {
+    e.preventDefault();
     const target = e.target;
     if(target.value === "") {
       setSearchKeyword("");
@@ -30,13 +31,17 @@ function Search() {
     }
   }
 
+  const submitHandler = (e) => {
+    e.preventDefault();
+  }
+
   const saveKeyword = debounce((target) => setSearchKeyword(target.value));
 
 
   return(
     <>
       <img id="site-banner" src={banner} alt="site banner"/>
-      <form id="search__search-form">
+      <form id="search__search-form" onSubmit={submitHandler}>
         <input type="text" id="search__search-box" name="search__search-box" onChange={searchOnChange} placeholder="Search Kuching old bazaar history"/>
         <SearchResult searchKeyword={searchKeyword} />
       </form>
