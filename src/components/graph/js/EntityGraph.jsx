@@ -7,6 +7,7 @@ import FloatingConnectionLine from "../utility/FloatingConnectionLine"
 import axios from "axios";
 import EntityDetails from "./EntityDetails";
 import DrawGraph from "../utility/DrawGraph";
+import { getEntityLabel } from "../utility/util";
 
 import '../css/EntityGraph.css'
 import 'reactflow/dist/style.css';
@@ -26,7 +27,7 @@ export default function EntityGraph() {
   const getEntity = async () => {
 
     axios.get(`${process.env.REACT_APP_API_URI}/${entityRequestMapping}/id/${entityId}`).then(response => {
-      const entity = response.data;
+      const entity = {label: getEntityLabel(entityRequestMapping), ...response.data};
 
       const {nodes: generatedNodes, edges: generatedEdges} = DrawGraph(entity);
 
