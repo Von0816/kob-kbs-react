@@ -1,4 +1,4 @@
-import { Position, MarkerType } from 'reactflow';
+import { Position } from 'reactflow';
 
 // this helper function returns the intersection point
 // of the line between the center of the intersectionNode and the target node
@@ -104,3 +104,23 @@ export function monthToString(monthInt) {
 
 }
 
+export function getEntityLabel(requestMapping) {
+  switch(requestMapping) {
+    case "e5-event":
+      return "E5 Event";
+    case "e21-person":
+      return "E21 Person";
+    case "e22-hmo":
+      return "E22 Human Made Object";
+    case "e30-right":
+      return "E30 Right";
+    case "e52-time-span":
+      return "E52 Time-span";
+    case "e53-place":
+      return "E53 Place";
+    case "e74-group":
+      return "E74 Group";
+    default:
+      return "";
+  }
+}

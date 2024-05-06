@@ -15,25 +15,26 @@
 
 .search-item__entity-tag {
   color: var(--pure-black);
-  margin-right: .5em;
-  border: none;
-  padding: .5em;
+  padding: .2em .5em;
   width: 20%;
+  max-width: 6.5em;
   border-radius: 2em;
   background-color: var(--tertiary-colour);
-  font-size: .8em;
+  font-size: .9em;
   font-weight: 600;
   text-align: center;
+  align-self: center;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  filter: drop-shadow(0 0 .5rem var(--shadow));
 }
 
 .search-item__entity-name {
   color: var(--pure-black);
   box-sizing: border-box;
   font-size: 1.2em;
-  padding-left: 10px;
+  padding-left: .5em;
   width: 80%;
   overflow: hidden;
   white-space: nowrap;

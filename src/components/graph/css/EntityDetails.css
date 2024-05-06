@@ -2,7 +2,7 @@
   box-sizing: border-box;
   height: 80vh;
   width: 400px;
-  padding: 35px 10px 10px 10px;
+  padding: 2em 1em 2em 1em;
   background-color: var(--pure-white);
   position: absolute;
   top: 10vh;
@@ -20,7 +20,7 @@
   cursor: pointer;
   background: none;
   border: none;
-  font-size: .8em;
+  font-size: 1.8ex;
   font-weight: 500;
 }
 
@@ -30,18 +30,19 @@
   gap: .5em;
 }
 
-#entity-details__entity-class {
-  font-size: .9em;
+#entity-details__entity-label {
+  font-size: 1.5ex;
   margin: 0;
-  padding: .2em .5em;
+  padding: .2em .8em;
   width: fit-content;
+  text-align: center;
   background-color: var(--secondary-colour);
   border-radius: 2em;
   font-weight: 600;
 }
 
 #entity-details__entity-name {
-  font-size: 1.25em;
+  font-size: 2.5ex;
   font-weight: 500;
   margin: 0;
 
@@ -56,6 +57,8 @@
 
 #entity-details__button-tab {
   display: flex;
+  border-bottom: 1px solid var(--shadow);
+  margin-bottom: 1em;
 }
 
 .button-tab__button {
@@ -65,19 +68,20 @@
   cursor: pointer;
   width: 50%;
   margin: 0 1em;
-  padding-bottom: 5px;
-  font-size: 1em;
+  font-size: 2ex;
   border-width: 0;
   font-weight: 500;
 }
 
 .button-tab__button-label {
-  margin-bottom: 10px;
+  margin-bottom: .2em;
 }
 
 .button-tab__underline {
+  position: relative;
+  top: 1px;
   width: 100%;
-  height: 4px;
+  height: .2em;
   visibility: hidden;
   background: rgba(0, 0, 0, 25%);
   border-top-right-radius: 2.5px;
@@ -96,6 +100,7 @@
 #entity-details__properties {
   display: flex;
   flex-flow: column;
+  gap: 1em;
 }
 
 .entity-details__properties-item {
@@ -104,55 +109,19 @@
 }
 
 .properties-item__label {
-  width: 50%;
+  width: 35%;
+  margin: 0;
   box-sizing: border-box;
   padding-right: .5em;
 }
 
 .properties-item__content {
-  width: 50%;
+  margin: 0;
+  width: 65%;
   font-weight: 500;
   text-align: justify;
 }
 
-
-.entity-relationship__entity-list {
-  display: flex;
-  flex-flow: column;
-  gap: 1em;
-  margin: .5em 0;
-}
-
-.entity-list__entity {
-  cursor: pointer;
-  display: flex;
-  flex-flow: column;
-  gap: .5em;
-  padding: .5em;
-  border: 1px solid rgba(0, 0, 0, .5);
-  border-radius: .5em;
-}
-
-.entity-list__entity:hover {
-  background: rgba(0, 0, 0, .1);
-}
-
-.entity-relationship__name {
-  font-weight: 600;
-}
-
-.entity-list__entity-class {
-  font-size: .8em;
-  margin: 0;
-  padding: .2em .5em;
-  width: fit-content;
-  background-color: var(--secondary-colour);
-  border-radius: 2em;
-  font-weight: 600;
-}
-
-#entity-relationship__p152 .entity-relationship__entity-list {
-}
 
 @media (max-width: 600px) {
 
