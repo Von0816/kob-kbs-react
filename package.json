@@ -18,7 +18,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -41,5 +41,4 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://kob-kbs-graph-c0c0f7f4dcc0.herokuapp.com/v1"
 }
