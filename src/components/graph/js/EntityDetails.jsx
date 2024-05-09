@@ -37,27 +37,8 @@ export default function EntityDetails(props) {
     setIsProperties(false);
   }
 
-  const generateTimeSpanName = (type, day, month, year) => {
-    if(type === "date") {
-      return `${day} ${monthToString(month)} ${year}}`
-    }
-    else {
-      return `${year}`;
-    }
-  }
-
   const entityProperties = () => {
-    if(entity.class === "E52 Time-span") {
-      return(
-        <div id='entity-details__properties' className='overflow-scroll'>
-          <EntityProperty label="type" value={entity.type}/>
-          {entity.day > 0 ? <EntityProperty label="day" value={entity.day}/> : null}
-          {entity.month > 0 ? <EntityProperty label="month" value={monthToString(entity.month)}/> : null }
-          <EntityProperty label="year" value={entity.year}/>
-        </div>
-      )
-    }
-    else if(entity.class === "E22 Human Made Object") {
+    if(entity.class === "E22 Human Made Object") {
       return(
         <div id='entity-details__properties' className='overflow-scroll'>
             <EntityProperty label="name" value={entity.name}/>
@@ -77,7 +58,7 @@ export default function EntityDetails(props) {
   const entityRelationship = () => {
     switch(entity.label) {
       case "E5 Event":
-        const timeSpanList = entity.timeSpan.map((timeSpan) => ({label: "E52 Time-span", requestMapping: "e52-time-span", name:  generateTimeSpanName(timeSpan.type, timeSpan.day, timeSpan.month, timeSpan.year),...timeSpan}));
+        const timeSpanList = entity.timeSpan.map((timeSpan) => ({label: "E52 Time-span", requestMapping: "e52-time-span", name:  timeSpan.name}));
         const participantList = [...entity.participantPerson.map((person) => ({label: "E21 Person", requestMapping: "e21-person", ...person})), ...entity.participantGroup.map((group) => ({label: "E74 Group", requestMapping: "e74-group", ...group}))];
       const locationList = entity.location.map((location) => ({label: "E53 Place", requestMapping: "e53-place", ...location}))
 
@@ -113,7 +94,7 @@ export default function EntityDetails(props) {
           </>
         )
       case "E52 Time-span":
-        const fallsWithinList = entity.fallsWithin.map((timeSpan) => ({label: "E52 Time-span", requestMapping: "e52-time-span", name:  generateTimeSpanName(timeSpan.type, timeSpan.day, timeSpan.month, timeSpan.year), ...timeSpan}))
+        const fallsWithinList = entity.fallsWithin.map((timeSpan) => ({label: "E52 Time-span", requestMapping: "e52-time-span", name: timeSpan.name}))
 
         return(
           <>
