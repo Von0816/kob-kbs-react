@@ -41,7 +41,7 @@ const drawE5EventGraph = (event) => {
     nodes.push({  id: timeSpan.id, 
                   type: 'circle', 
                   position: { x, y},
-                  data: {label: 'E52 Time-span', name: timeSpan.name}});
+                  data: {label: 'E52 Time-span', name: timeSpan.name, fallsWithin: timeSpan.fallsWithin}});
     edges.push({  id: `${event.id} - ${timeSpan.id}`, 
                   source: event.id, 
                   target: timeSpan.id, 
@@ -281,7 +281,7 @@ const drawE52TimeSpanGraph = (timeSpan) => {
   let i = 0;
 
 
-  nodes.push({id: timeSpan.id, position: center, type: 'circle', data: {label: 'E52 Time-span', name: timeSpan.name}});
+  nodes.push({id: timeSpan.id, position: center, type: 'circle', data: {label: 'E52 Time-span', name: timeSpan.name, fallsWithin: timeSpan.fallsWithin}});
 
   timeSpan.fallsWithin.forEach( (fallsWithin) => {
     const degrees = i * (360 / relCount);
