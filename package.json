@@ -41,5 +41,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://kob-kbs-graph-c0c0f7f4dcc0.herokuapp.com/v1"
+  "proxy": "http://localhost:8080/v1"
 }

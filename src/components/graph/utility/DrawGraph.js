@@ -41,7 +41,7 @@ const drawE5EventGraph = (event) => {
     nodes.push({  id: timeSpan.id, 
                   type: 'circle', 
                   position: { x, y},
-                  data: {label: 'E52 Time-span', type: timeSpan.type, name: `${timeSpan.day !== 0 ? timeSpan.day : ""} ${monthToString(timeSpan.month) !== null ? monthToString(timeSpan.month) : ""} ${timeSpan.year}`, day: timeSpan.day, month: timeSpan.month, year: timeSpan.year, fallsWithin: timeSpan.fallsWithin}});
+                  data: {label: 'E52 Time-span', name: timeSpan.name}});
     edges.push({  id: `${event.id} - ${timeSpan.id}`, 
                   source: event.id, 
                   target: timeSpan.id, 
@@ -281,7 +281,7 @@ const drawE52TimeSpanGraph = (timeSpan) => {
   let i = 0;
 
 
-  nodes.push({id: timeSpan.id, position: center, type: 'circle', data: {label: 'E52 Time-span', name: `${timeSpan.day} ${monthToString(timeSpan.month)} ${timeSpan.year}`, type: timeSpan.type, day: timeSpan.day, month: timeSpan.month, year: timeSpan.year}});
+  nodes.push({id: timeSpan.id, position: center, type: 'circle', data: {label: 'E52 Time-span', name: timeSpan.name}});
 
   timeSpan.fallsWithin.forEach( (fallsWithin) => {
     const degrees = i * (360 / relCount);
@@ -292,7 +292,7 @@ const drawE52TimeSpanGraph = (timeSpan) => {
     nodes.push({  id: fallsWithin.id, 
                   type: 'circle', 
                   position: { x, y},
-                  data: {label: 'E52 Time-span', name: `${fallsWithin.day} ${monthToString(fallsWithin.month)} ${fallsWithin.year}`, fallsWithin: fallsWithin.fallsWithin}});
+                  data: {label: 'E52 Time-span', name: fallsWithin.name}});
     edges.push({  id: `${timeSpan.id} - ${fallsWithin.id}`, 
                   source: timeSpan.id, 
                   target: fallsWithin.id, 
