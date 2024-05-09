@@ -58,7 +58,7 @@ export default function EntityDetails(props) {
   const entityRelationship = () => {
     switch(entity.label) {
       case "E5 Event":
-        const timeSpanList = entity.timeSpan.map((timeSpan) => ({label: "E52 Time-span", requestMapping: "e52-time-span", name:  timeSpan.name}));
+        const timeSpanList = entity.timeSpan.map((timeSpan) => ({label: "E52 Time-span", requestMapping: "e52-time-span", ...timeSpan}));
         const participantList = [...entity.participantPerson.map((person) => ({label: "E21 Person", requestMapping: "e21-person", ...person})), ...entity.participantGroup.map((group) => ({label: "E74 Group", requestMapping: "e74-group", ...group}))];
       const locationList = entity.location.map((location) => ({label: "E53 Place", requestMapping: "e53-place", ...location}))
 
@@ -94,7 +94,7 @@ export default function EntityDetails(props) {
           </>
         )
       case "E52 Time-span":
-        const fallsWithinList = entity.fallsWithin.map((timeSpan) => ({label: "E52 Time-span", requestMapping: "e52-time-span", name: timeSpan.name}))
+        const fallsWithinList = entity.fallsWithin.map((timeSpan) => ({label: "E52 Time-span", requestMapping: "e52-time-span", ...timeSpan}))
 
         return(
           <>
