@@ -4,14 +4,14 @@ import '../css/SearchItem.css'
 function SearchItem(props) {
   const navigate = useNavigate();
 
-  const searchItemOnClick = (entityRequestMapping, entityId) => {
+  const searchItemOnClick = () => {
 
-    navigate(`/entity/${entityRequestMapping}/${entityId}`);
+    navigate(`/entity/${props.entityRequestMapping}/${props.entityId}`);
   }
 
   return(
-    <li className="search-item__entity" onClick={() => searchItemOnClick(props.entityRequestMapping, props.entityId)} key={props.entityId}>
-        <span className='search-item__entity-tag'>{props.entityClass}</span>
+    <li className="search-item__entity" onClick={searchItemOnClick} key={props.entityId}>
+        <span className='search-item__entity-tag'>{props.entityLabel}</span>
         <span className='search-item__entity-name'>{props.entityName}</span>
     </li>
   )

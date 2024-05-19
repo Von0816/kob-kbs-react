@@ -24,9 +24,11 @@ function Search() {
     e.preventDefault();
     const target = e.target;
     if(target.value === "") {
+      document.getElementById("search__search-box").classList.remove("has-data");
       setSearchKeyword("");
     }
     else {
+      document.getElementById("search__search-box").classList.add("has-data")
       saveKeyword(target);
     }
   }
