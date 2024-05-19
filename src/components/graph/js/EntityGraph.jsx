@@ -26,7 +26,7 @@ export default function EntityGraph() {
 
   const getEntity = async () => {
 
-    axios.get(`${process.env.REACT_APP_API_URI}/${entityRequestMapping}/id/${entityId}`).then(response => {
+    axios.get(`${process.env.REACT_APP_API_URI}/${entityRequestMapping}/id/${entityId}`, {headers: {"API_KEY": process.env.REACT_APP_API_KEY}}).then(response => {
       const entity = {label: getEntityLabel(entityRequestMapping), ...response.data};
 
       const {nodes: generatedNodes, edges: generatedEdges} = DrawGraph(entity);
